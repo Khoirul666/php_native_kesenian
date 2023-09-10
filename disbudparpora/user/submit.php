@@ -2,6 +2,8 @@
 
 if(isset($_POST['submit'])){
 
+  $tglberlaku =DATE('Y-m-d');
+
   $nama = $_POST['nama'];
   $jeniskelamin = $_POST['jeniskelamin'];
   $tempatlahir = $_POST['tempatlahir'];
@@ -34,16 +36,19 @@ if(isset($_POST['submit'])){
   $nama_file_ktpanggota = $_FILES['ktpanggota']['name'];
   $nama_file_alatmusik = $_FILES['alatmusik']['name'];
   $nama_file_suratizin = $_FILES['suratizin']['name'];
+  $nama_file_foto = $_FILES['pas_foto']['name'];
 
   $ext1 = pathinfo($nama_file_ktpketua, PATHINFO_EXTENSION);
   $ext2 = pathinfo($nama_file_ktpanggota, PATHINFO_EXTENSION);
   $ext3 = pathinfo($nama_file_alatmusik, PATHINFO_EXTENSION);
   $ext4 = pathinfo($nama_file_suratizin, PATHINFO_EXTENSION);
+  $ext_foto = pathinfo($nama_file_foto, PATHINFO_EXTENSION);
 
   $ukuran_file_ktpketua = $_FILES['ktpketua']['size'];
   $ukuran_file_ktpanggota = $_FILES['ktpanggota']['size'];
   $ukuran_file_alatmusik = $_FILES['alatmusik']['size'];
   $ukuran_file_suratizin = $_FILES['suratizin']['size'];
+  $ukuran_file_foto = $_FILES['pas_foto']['size'];
 
   $ukurantotal = $ukuran_file_ktpketua + $ukuran_file_ktpanggota + $ukuran_file_alatmusik + $ukuran_file_suratizin;
   $tipe_file = $_FILES['ktpketua']['type'];
@@ -51,27 +56,28 @@ if(isset($_POST['submit'])){
   $tmp_file2 = $_FILES['ktpanggota']['tmp_name'];
   $tmp_file3 = $_FILES['alatmusik']['tmp_name'];
   $tmp_file4 = $_FILES['suratizin']['tmp_name'];
+  $tmp_foto = $_FILES['pas_foto']['tmp_name'];
 
   $path_ktpketua = "images/ktpketua/".$ktpketua.'.'.$ext1;
   $path_ktpanggota = "images/ktpanggota/".$ktpanggota.'.'.$ext2;
   $path_alatmusik = "images/alatmusik/".$alatmusik.'.'.$ext3;
   $path_suratizin = "images/suratizin/".$suratizin.'.'.$ext4;
-
+  $path_foto = "images/foto/".$userid.DATE('Ymd',strtotime($tglberlaku)).rand().'.'.$ext_foto;
 
         // Lakukan pemeriksaan jenis berkas dan ukuran berkas di sini
   if ($tipe_file == "image/jpeg" || $tipe_file == "image/png"){
-    if ($ukurantotal <= 1600000){ 
+    if ($ukurantotal <= 1600000 && $ukuran_file_foto <= 500000){ 
           // Lakukan pengunggahan berkas ke direktori tujuan
       $upload = move_uploaded_file($tmp_file, $path_ktpketua);
       $upload2 = move_uploaded_file($tmp_file2, $path_ktpanggota);
       $upload3 = move_uploaded_file($tmp_file3, $path_alatmusik);
       $upload4 = move_uploaded_file($tmp_file4, $path_suratizin);
+      $upload_foto = move_uploaded_file($tmp_foto, $path_foto);
       
-      if($upload && $upload2 && $upload3 && $upload4){ 
+      if($upload && $upload2 && $upload3 && $upload4 && $upload_foto){ 
 
-        $tglberlaku =DATE('Y-m-d');
-        $submitdata = mysqli_query($conn,"insert into userdata (userid, noinduk, nama, jeniskelamin, tempatlahir, tgllahir, alamat, kelurahan, kecamatan, nohp, jabatan, namakesenian, tglberdiri, jeniskesenian, jmlanggota, ktpketua, ktpanggota, alatmusik, suratizin, tglberlaku) 
-          values('$userid','$noinduk','$nama','$jeniskelamin','$tempatlahir','$tgllahir','$alamat','$kelurahan','$kecamatan','$nohp','$jabatan','$namakesenian','$tglberdiri','$jeniskesenian','$jmlanggota','$path_ktpketua','$path_ktpanggota','$path_alatmusik','$path_suratizin','$tglberlaku')");
+        $submitdata = mysqli_query($conn,"insert into userdata (userid, nama, jeniskelamin, tempatlahir, tgllahir, alamat, kelurahan, kecamatan, nohp, jabatan, namakesenian, tglberdiri, jeniskesenian, jmlanggota, ktpketua, ktpanggota, alatmusik, suratizin, tglberlaku, foto) 
+          values('$userid','$nama','$jeniskelamin','$tempatlahir','$tgllahir','$alamat','$kelurahan','$kecamatan','$nohp','$jabatan','$namakesenian','$tglberdiri','$jeniskesenian','$jmlanggota','$path_ktpketua','$path_ktpanggota','$path_alatmusik','$path_suratizin','$tglberlaku','$path_foto')");
         
         if($submitdata){ 
 
@@ -93,12 +99,15 @@ if(isset($_POST['submit'])){
         echo "Sorry, there's a problem while uploading the file.";
         echo "<br><meta http-equiv='refresh' content='5; URL=daftar.php'> You will be redirected to the form in 5 seconds";
       }
-    }else{
+    }
+    else{
             // Jika ukuran file lebih dari 1MB, lakukan :
       echo "Sorry, the file size is not allowed to more than 1,5mb";
       echo "<br><meta http-equiv='refresh' content='5; URL=daftar.php'> You will be redirected to the form in 5 seconds";
     }
-  }else{
+
+  }
+  else{
           // Jika tipe file yang diupload bukan JPG / JPEG / PNG, lakukan :
     echo "Sorry, the image format should be JPG/PNG.";
     echo "<br><meta http-equiv='refresh' content='5; URL=daftar.php'> You will be redirected to the form in 5 seconds";

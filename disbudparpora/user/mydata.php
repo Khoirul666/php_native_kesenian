@@ -356,6 +356,16 @@ if($status=='Verified'){
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="pas_foto" class=" form-control-label">Foto Ketua</label>
+                                            <br>
+                                            <img src="<?php echo $ambil['foto']?>" width="200px">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 
 
                                 <div class="modal-footer">

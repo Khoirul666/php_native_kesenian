@@ -346,6 +346,15 @@ if($lihathasil>0){
                                                 </div>
                                             </div>
 
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="pas_foto" class=" form-control-label">Pas Foto 3 x 4 (JPG/PNG), maks 500kb</label>
+                                                        <input type="file" id="pas_foto" name="pas_foto" class="form-control-file" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="modal-footer">
                                                 <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
                                             </div>

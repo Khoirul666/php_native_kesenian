@@ -184,7 +184,7 @@ if(isset($_POST['dataubah'])){
                                         ?>
 
                                         <tr>
-                                            <td><?php echo $no++ ?></td>
+                                            <td><?php echo $b['noinduk'] ?></td>
                                             <td><?php echo $b['nama'] ?></td>
                                             <td><?php echo $b['namakesenian'] ?></td>
                                             <td><?php echo $b['jeniskesenian'] ?></td>
@@ -193,7 +193,7 @@ if(isset($_POST['dataubah'])){
                                                 <div style="display: flex;">
                                                     <button class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#no_induk<?= $b['userdataid'] ?>">No Induk</button>
                                                     <a class="btn btn-primary btn-sm m-1" href="view.php?u=<?php echo $b['userid'];?>">Lihat Detail</a>
-                                                    <a class="btn btn-primary btn-sm m-1" href="print.php?u=<?php echo $b['userid'];?>">Print</a>
+                                                    <a class="btn btn-primary btn-sm m-1" href="print.php?u=<?php echo $b['userid'];?>" target="_blank">Print</a>
                                                 </div>
                                             </td>
 

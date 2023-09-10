@@ -1,0 +1,17 @@
+body{
+	font-family: Arial, sans-serif;
+}
+
+
+.page:first-child{
+	page-break-after: always;
+}
+
+.page:last-child{
+
+}
+
+@page{
+	size: 30cm 10cm;
+	orientation: landscape;
+}

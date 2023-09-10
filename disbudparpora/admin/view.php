@@ -13,6 +13,22 @@ $userid = $_GET['u'];
 $cekdulu = mysqli_query($conn,"select * from userdata where userid='$userid'");
 $ambil = mysqli_fetch_array($cekdulu);
 
+if (isset($_POST['hapus'])) {
+    $hapus = mysqli_query($conn,"DELETE FROM userdata WHERE userid='".$userid."'");
+    if ($hapus){
+        //berhasil hapus
+        echo " <div class='alert alert-success'>
+        Berhasil hapus data.
+        </div>
+        <meta http-equiv='refresh' content='1; url= form.php'/>  ";  
+    } else {
+        echo "<div class='alert alert-warning'>
+        Gagal hapus data. Silakan coba lagi nanti.
+        </div>
+        <meta http-equiv='refresh' content='3; url= form.php'/> ";
+    }
+}
+
 ?>
 
 <head>
@@ -143,7 +159,7 @@ $ambil = mysqli_fetch_array($cekdulu);
                                 </div>
                                 <div class="market-status-table mt-4">
                                     <div class="table-responsive">
-                                        <img src="../user/<?php echo $ambil['ktpketua']?>" width="20%">
+                                        <img src="../user/<?php echo $ambil['foto']?>" width="200px">
                                     </div>
                                 </div>
                             </div>
@@ -340,11 +356,41 @@ $ambil = mysqli_fetch_array($cekdulu);
                                             </div>
                                         </div>
 
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="pas_foto" class=" form-control-label">Foto Ketua</label>
+                                                    <br>
+                                                    <img src="../user/<?php echo $ambil['foto']?>" width="200px">
+                                                </div>
+                                            </div>
+                                        </div>
+
 
 
                                         <div class="modal-footer">
-                                            <input type="submit" name="update" class="btn btn-primary" value="Simpan">
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Konfirmasi</button>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">HAPUS</button>
+                                        </div>
+
+                                        <div class="modal fade" id="myModal">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form method="post">
+
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            Apakah Anda yakin untuk menghapus data ini? Setelah dihapus maka pendaftar akan diminta mengisikan ulang data.
+                                                            <input type="hidden" value="<?=$userid;?>" name="id">
+                                                        </div>
+
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                                            <input type="submit" class="btn btn-success" name="hapus" value="hapus">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
