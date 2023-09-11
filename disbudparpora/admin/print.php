@@ -20,18 +20,18 @@ require('print_pendaftar.php');
 $html = ob_get_contents();
 ob_get_clean();
 
-// echo $html;
+echo $html;
 
-$dompdf->loadHtml($html);
+// $dompdf->loadHtml($html);
 
-$dompdf->set_option('isRemoteEnabled',true);
+// $dompdf->set_option('isRemoteEnabled',true);
 
-// // (Optional) Setup the paper size and orientation
-// $dompdf->setPaper(array(0,0,300,900), 'landscape');
+// // // (Optional) Setup the paper size and orientation
+// // $dompdf->setPaper(array(0,0,300,900), 'landscape');
 
-// // Render the HTML as PDF
-$dompdf->render();
+// // // Render the HTML as PDF
+// $dompdf->render();
 
-// // Output the generated PDF to Browser
-$dompdf->stream('document.php', array('Attachment' => 0));
+// // // Output the generated PDF to Browser
+// $dompdf->stream('document.php', array('Attachment' => 0));
 ?>

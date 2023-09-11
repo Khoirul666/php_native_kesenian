@@ -7,25 +7,53 @@
 	<style type="text/css">
 		body{
 			background-color: pink;
+			position: relative;
 		}
 		#page_satu{
 			height: 200px;
 			background-color: aqua;
 		}
-		#page_satu p {
-/*			background-image: url('../assets/images/template_top.jpg');*/
-		}
-		#page_dua{
-			height: 200px;
+		#data_{
+			position: absolute;
+			top: 800px;
 		}
 
 	</style>
 </head>
 <body>
+	<center>
+		<img src="http://192.168.1.14:8080/PHP/NATIVE/New%20folder%20(2)/php_native_kesenian/php_native_kesenian/disbudparpora/assets/images/template_top.jpg" width="800px">
+		<br>
+		<img src="http://192.168.1.14:8080/PHP/NATIVE/New%20folder%20(2)/php_native_kesenian/php_native_kesenian/disbudparpora/assets/images/template_bot.jpg" width="800px">
+	</center>
+	<table id="data_">
+		<thead>
+			<tr>
+				<th>KIRI</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>am;cma;lms</td>
+			</tr>
+		</tbody>
+	</table>
+	<table id="data_foto">
+		<thead>
+			<tr>
+				<th>KANAN</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>am;cma;lms</td>
+			</tr>
+			<tr>
+				<td>am;cma;lms</td>
+			</tr>
+		</tbody>
+	</table>
 	<div id="page_satu">
-		<center>
-			<img src="http://192.168.1.14:8080/PHP/NATIVE/New%20folder%20(2)/php_native_kesenian/php_native_kesenian/disbudparpora/assets/images/template_top.jpg" width="600px">
-		</center>
 		<p>
 			data page 1
 		</p>
