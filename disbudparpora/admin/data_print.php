@@ -28,6 +28,7 @@
 	margin: 0;
 	orientation: landscape;
 }
+
 </style>
 </head>
 <body>
@@ -42,7 +43,7 @@
 		?>
 
 		<?= $a ?>
-		<!-- <img src="http://localhost:8080/PHP_NATIVE/20230822_Hikmafico/disbudparpora/assets/images/template_top.jpg" height="100%"> -->
+		<img src="http://192.168.1.14:8080/PHP/NATIVE/New%20folder%20(2)/php_native_kesenian/php_native_kesenian/disbudparpora/assets/images/template_top.jpg" height="100%">
 		asmalmsa
 	</div>
 
